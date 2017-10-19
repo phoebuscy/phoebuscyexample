@@ -12,6 +12,7 @@
         <module>common</module>
         <module>multhread</module>
         <module>mysqldemo</module>
+        <module>freechart</module>
     </modules>
 
 
