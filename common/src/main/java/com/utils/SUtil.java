@@ -1,6 +1,8 @@
 package com.utils;
 
 
+import java.awt.Color;
+import java.awt.Paint;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,7 +27,9 @@ public class SUtil
     public static void main(String[] args)
     {
         String src = "10";
-        String des = "1";
+        String des = "10.0";
+
+        boolean retb = isEqualDoubleNumber(src,des);
 
         ReturnObj returnObj = getPercentValStr( src,  des);
         String ret = (String) returnObj.returnObj;
@@ -201,6 +205,19 @@ public class SUtil
         return isIntNumeric(str) || isDoubleNumber(str);
     }
 
+    // 判断两个数是否相等，包括整数和double数
+    public static boolean isEqualDoubleNumber(String oneNum, String otherNum)
+    {
+        if (!isStrNull(oneNum) && !isStrNull(otherNum))
+        {
+            if (isIntOrDoubleNumber(oneNum) && isIntOrDoubleNumber(otherNum))
+            {
+                return Double.compare(Double.parseDouble(otherNum), Double.parseDouble(oneNum)) == 0;
+            }
+        }
+        return false;
+    }
+
     public static ReturnObj getDiffDoubleNumber(String src, String des)
     {
         ReturnObj returnObj = new ReturnObj();
@@ -328,6 +345,9 @@ public class SUtil
         }
         return label;
     }
+
+
+
 
 
 }
