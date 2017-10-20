@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.Range;
+import org.jfree.data.time.Millisecond;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import static com.chart.pub.setFreeChartTheme;
@@ -68,30 +71,62 @@ public class RealTimeChartTest extends ChartPanel
        // xySeries.add(randomNum(), randomNum());
       //  xTicket++;
        // xySeries.add(xTicket,0.2);
+        List<Double> yValLst = new ArrayList<>();
+
+        for(int i = 0; i< 200; i++)
+        {
+            Double val = randomNum();
+
+            xySeries.add(i, val);
+            System.out.println(val);
+        }
+
+/*
+
+        for(int i = 0; i < 800; i+=50)
+        {
+            try
+            {
+                xySeries.add(i, randomNum());
+                Thread.sleep(900);
+            }
+            catch (InterruptedException e)
+            {
+            }
+        }
+        */
+
+        /*
 
         switch (xTicket++)
         {
             case 1:
-                xySeries.add(0.1, 0.1);
+                xySeries.add(100, 0.1);
                 break;
             case 2:
-                xySeries.add(0.2, 0.1);
+                xySeries.add(200, 0.2);
                 break;
             case 3:
-                xySeries.add(0.3, 0.1);
+                xySeries.add(250, 0.3);
                 break;
             case 4:
-                xySeries.add(0.4,0.1);
-
+                xySeries.add(700,0.1);
+                break;
+            case 5:
+                xySeries.add(750,0.5);
+                break;
+            case 6:
+                xySeries.add(800,0.4);
+                break;
         }
-
-
+        */
     }
 
-    private static long randomNum()
+    private static Double randomNum()
     {
-        System.out.println((Math.random() * 20 + 80));
-        return (long) (Math.random() * 20 + 80);
+        Double val = Math.random()  + 150.5;
+        System.out.println(val);
+        return val;
     }
 
 
@@ -127,10 +162,11 @@ public class RealTimeChartTest extends ChartPanel
       //  valueaxis.setFixedAutoRange(300D);
 
         ValueAxis rangeAxis = xyplot.getRangeAxis();
+        rangeAxis.setRange(150.0,152.0);
 
         NumberAxis domainAxis = (NumberAxis)xyplot.getDomainAxis();//x轴设置
-        domainAxis.setRange(1.0,840.0);
-        domainAxis.setTickUnit(new NumberTickUnit(100)); //每100个刻度显示一个刻度值
+        domainAxis.setRange(1.0,200.0);
+        domainAxis.setTickUnit(new NumberTickUnit(20)); //每100个刻度显示一个刻度值
 
         // valueaxis.setRange(0.0D,200D);
         return jfreechart;

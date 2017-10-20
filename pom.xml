@@ -12,11 +12,8 @@
         <module>common</module>
         <module>multhread</module>
         <module>mysqldemo</module>
-<<<<<<< HEAD
         <module>freechart</module>
-=======
         <module>chart</module>
->>>>>>> 7457b9d8eb6efd46797dc3081f6e2b509c2c1ec9
     </modules>
 
 
