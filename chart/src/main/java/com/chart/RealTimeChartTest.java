@@ -1,17 +1,6 @@
 package com.chart;
 
 import com.utils.GBC;
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -19,10 +8,19 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.Range;
-import org.jfree.data.time.Millisecond;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import static com.chart.pub.setFreeChartTheme;
 
 public class RealTimeChartTest extends ChartPanel
@@ -68,12 +66,7 @@ public class RealTimeChartTest extends ChartPanel
 
     private static void onBtnPut()
     {
-       // xySeries.add(randomNum(), randomNum());
-      //  xTicket++;
-       // xySeries.add(xTicket,0.2);
-        List<Double> yValLst = new ArrayList<>();
-
-        for(int i = 0; i< 200; i++)
+        for(int i = 0; i< 100; i+=5)
         {
             Double val = randomNum();
 
@@ -81,45 +74,6 @@ public class RealTimeChartTest extends ChartPanel
             System.out.println(val);
         }
 
-/*
-
-        for(int i = 0; i < 800; i+=50)
-        {
-            try
-            {
-                xySeries.add(i, randomNum());
-                Thread.sleep(900);
-            }
-            catch (InterruptedException e)
-            {
-            }
-        }
-        */
-
-        /*
-
-        switch (xTicket++)
-        {
-            case 1:
-                xySeries.add(100, 0.1);
-                break;
-            case 2:
-                xySeries.add(200, 0.2);
-                break;
-            case 3:
-                xySeries.add(250, 0.3);
-                break;
-            case 4:
-                xySeries.add(700,0.1);
-                break;
-            case 5:
-                xySeries.add(750,0.5);
-                break;
-            case 6:
-                xySeries.add(800,0.4);
-                break;
-        }
-        */
     }
 
     private static Double randomNum()
@@ -141,6 +95,7 @@ public class RealTimeChartTest extends ChartPanel
         // 创建时序图对象
         xySeries = new XYSeries(0, false);
         XYSeriesCollection xySeriesCollection = new XYSeriesCollection(xySeries);
+        /*
         JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title,
                                                                    "time(second)",
                                                                    yaxisName,
@@ -148,16 +103,18 @@ public class RealTimeChartTest extends ChartPanel
                                                                    true,
                                                                    true,
                                                                    false);
+                                                                   */
 
-        jfreechart = ChartFactory.createXYLineChart("title","xAxis", "yAxis", xySeriesCollection);
+        JFreeChart jfreechart = ChartFactory.createXYLineChart("title","xAxis", "yAxis", xySeriesCollection);
 
 
         XYPlot xyplot = jfreechart.getXYPlot();
 
-        // 纵坐标设定
+        // X轴设定
         ValueAxis valueaxis = xyplot.getDomainAxis();
         // 自动设置数据轴数据范围
         valueaxis.setAutoRange(false);
+
         // 数据轴固定数据范围 30s
       //  valueaxis.setFixedAutoRange(300D);
 
