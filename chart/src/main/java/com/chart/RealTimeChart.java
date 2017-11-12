@@ -1,25 +1,18 @@
 package com.chart;
 
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Date;
+import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.labels.StandardXYItemLabelGenerator;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.ui.TextAnchor;
-
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Date;
 
 public class RealTimeChart extends ChartPanel implements Runnable
 {
