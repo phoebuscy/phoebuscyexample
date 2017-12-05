@@ -29,8 +29,7 @@ public class Prd extends Thread
             if (random > 3 && random <= 6)
             {
                 sleepS = 2;
-            }
-            else
+            } else
             {
                 sleepS = 3;
             }
@@ -38,8 +37,7 @@ public class Prd extends Thread
             try
             {
                 Thread.sleep(1000 * sleepS);
-            }
-            catch (InterruptedException e)
+            } catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
