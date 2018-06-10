@@ -27,22 +27,22 @@ public class RealTimeChartChange extends ChartPanel implements Runnable
 
     private static JFreeChart createChart(String chartContent, String title, String yaxisName)
     {
-        //´´½¨Ê±ĞòÍ¼¶ÔÏó
+        //åˆ›å»ºæ—¶åºå›¾å¯¹è±¡
         // timeSeries = new TimeSeries(chartContent);
         timeSeries = new XYSeries(chartContent);
 
         // TimeSeriesCollection timeseriescollection = new TimeSeriesCollection(timeSeries);
         XYSeriesCollection timeseriescollection = new XYSeriesCollection(timeSeries);
 
-        //  JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title, "Ê±¼ä(Ãë)", yaxisName, timeseriescollection, true,
+        //  JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title, "æ—¶é—´(ç§’)", yaxisName, timeseriescollection, true,
         //     true,false);
         JFreeChart jfreechart = ChartFactory.createXYLineChart("title", "xAxis", "yAxis", null);
         XYPlot xyplot = jfreechart.getXYPlot();
-        //×İ×ø±êÉè¶¨
+        //çºµåæ ‡è®¾å®š
         ValueAxis valueaxis = xyplot.getDomainAxis();
-        //×Ô¶¯ÉèÖÃÊı¾İÖáÊı¾İ·¶Î§
+        //è‡ªåŠ¨è®¾ç½®æ•°æ®è½´æ•°æ®èŒƒå›´
         valueaxis.setAutoRange(true);
-        //Êı¾İÖá¹Ì¶¨Êı¾İ·¶Î§ 30s
+        //æ•°æ®è½´å›ºå®šæ•°æ®èŒƒå›´ 30s
         valueaxis.setFixedAutoRange(30000D);
 
         valueaxis = xyplot.getRangeAxis();
@@ -76,7 +76,7 @@ public class RealTimeChartChange extends ChartPanel implements Runnable
     public static void main(String[] args)
     {
         JFrame frame = new JFrame("Test Chart");
-        RealTimeChartChange rtcp = new RealTimeChartChange("Random Data", "Ëæ»úÊı", "ÊıÖµ");
+        RealTimeChartChange rtcp = new RealTimeChartChange("Random Data", "éšæœºæ•°", "æ•°å€¼");
         frame.getContentPane().add(rtcp, new BorderLayout().CENTER);
         frame.pack();
         frame.setVisible(true);

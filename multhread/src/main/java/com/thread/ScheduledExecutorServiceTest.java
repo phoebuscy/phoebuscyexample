@@ -15,11 +15,11 @@ public class ScheduledExecutorServiceTest
     {
         ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
 
-        TimerTask timerTask = new TimerTask(2000); // ÈÎÎñĞèÒª 2000 ms ²ÅÄÜÖ´ĞĞÍê±Ï
+        TimerTask timerTask = new TimerTask(2000); // ä»»åŠ¡éœ€è¦ 2000 ms æ‰èƒ½æ‰§è¡Œå®Œæ¯•
 
-        System.out.printf("ÆğÊ¼Ê±¼ä£º%s\n\n", new SimpleDateFormat("HH:mm:ss").format(new Date()));
+        System.out.printf("èµ·å§‹æ—¶é—´ï¼š%s\n\n", new SimpleDateFormat("HH:mm:ss").format(new Date()));
 
-        // ÑÓÊ± 1 Ãëºó£¬°´ 3 ÃëµÄÖÜÆÚÖ´ĞĞÈÎÎñ
+        // å»¶æ—¶ 1 ç§’åï¼ŒæŒ‰ 3 ç§’çš„å‘¨æœŸæ‰§è¡Œä»»åŠ¡
         timer.scheduleAtFixedRate(timerTask, 1000, 3000, TimeUnit.MILLISECONDS);
     }
 
@@ -38,18 +38,18 @@ public class ScheduledExecutorServiceTest
         @Override
         public void run()
         {
-            System.out.println("ÈÎÎñ¿ªÊ¼£¬µ±Ç°Ê±¼ä£º" + dateFormat.format(new Date()));
+            System.out.println("ä»»åŠ¡å¼€å§‹ï¼Œå½“å‰æ—¶é—´ï¼š" + dateFormat.format(new Date()));
 
             try
             {
-                System.out.println("Ä£ÄâÈÎÎñÔËĞĞ...");
+                System.out.println("æ¨¡æ‹Ÿä»»åŠ¡è¿è¡Œ...");
                 Thread.sleep(sleepTime);
             } catch (InterruptedException ex)
             {
                 ex.printStackTrace(System.err);
             }
 
-            System.out.println("ÈÎÎñ½áÊø£¬µ±Ç°Ê±¼ä£º" + dateFormat.format(new Date()));
+            System.out.println("ä»»åŠ¡ç»“æŸï¼Œå½“å‰æ—¶é—´ï¼š" + dateFormat.format(new Date()));
             System.out.println();
         }
 

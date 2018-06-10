@@ -17,37 +17,37 @@ import javax.swing.JPanel;
 public class Chart_test extends JFrame
 {
 
-    private List<Integer> values;// ±£´æ½ÓÊÜµÄÊı¾İÈİÆ÷
-    private static final int MAX_VALUE = 180;// ½ÓÊÜµ½µÄÊı¾İ×î´óÖµ
-    private static final int MAX_COUNT_OF_VALUES = 50;// ×î¶à±£´æÊı¾İµÄ¸öÊı
+    private List<Integer> values;// ä¿å­˜æ¥å—çš„æ•°æ®å®¹å™¨
+    private static final int MAX_VALUE = 180;// æ¥å—åˆ°çš„æ•°æ®æœ€å¤§å€¼
+    private static final int MAX_COUNT_OF_VALUES = 50;// æœ€å¤šä¿å­˜æ•°æ®çš„ä¸ªæ•°
     // private
     private MyCanvas trendChartCanvas = new MyCanvas();
-    // ¿ò¼ÜÆğµã×ø±ê
+    // æ¡†æ¶èµ·ç‚¹åæ ‡
     private final int FREAME_X = 50;
     private final int FREAME_Y = 50;
-    private final int FREAME_WIDTH = 600;// ºá
-    private final int FREAME_HEIGHT = 250;// ×İ
+    private final int FREAME_WIDTH = 600;// æ¨ª
+    private final int FREAME_HEIGHT = 250;// çºµ
 
-    // Ô­µã×ø±ê
+    // åŸç‚¹åæ ‡
     private final int Origin_X = FREAME_X + 50;
     private final int Origin_Y = FREAME_Y + FREAME_HEIGHT - 30;
 
-    // X,YÖáÖÕµã×ø±ê
+    // X,Yè½´ç»ˆç‚¹åæ ‡
     private final int XAxis_X = FREAME_X + FREAME_WIDTH - 30;
     private final int XAxis_Y = Origin_Y;
     private final int YAxis_X = Origin_X;
     private final int YAxis_Y = FREAME_Y + 30;
 
-    // XÖáÉÏµÄÊ±¼ä·Ö¶ÈÖµ£¨1·Ö¶È=40ÏñËØ£©
+    // Xè½´ä¸Šçš„æ—¶é—´åˆ†åº¦å€¼ï¼ˆ1åˆ†åº¦=40åƒç´ ï¼‰
     private final int TIME_INTERVAL = 50;
-    // YÖáÉÏÖµ
+    // Yè½´ä¸Šå€¼
     private final int PRESS_INTERVAL = 30;
 
     public Chart_test()
     {
-        super("Ç°¶Ë½çÃæÏÔÊ¾£º");
-        values = Collections.synchronizedList(new ArrayList<Integer>());// ·ÀÖ¹ÒıÆğÏß³ÌÒì³£
-        // ´´½¨Ò»¸öËæ»úÊıÏß³Ì
+        super("å‰ç«¯ç•Œé¢æ˜¾ç¤ºï¼š");
+        values = Collections.synchronizedList(new ArrayList<Integer>());// é˜²æ­¢å¼•èµ·çº¿ç¨‹å¼‚å¸¸
+        // åˆ›å»ºä¸€ä¸ªéšæœºæ•°çº¿ç¨‹
         new Thread(new Runnable()
         {
             public void run()
@@ -78,7 +78,7 @@ public class Chart_test extends JFrame
 
     public void addValue(int value)
     {
-        // Ñ­»·µÄÊ¹ÓÃÒ»¸ö½ÓÊÜÊı¾İµÄ¿Õ¼ä
+        // å¾ªç¯çš„ä½¿ç”¨ä¸€ä¸ªæ¥å—æ•°æ®çš„ç©ºé—´
         if (values.size() > MAX_COUNT_OF_VALUES)
         {
             values.remove(0);
@@ -86,7 +86,7 @@ public class Chart_test extends JFrame
         values.add(value);
     }
 
-    // »­²¼ÖØ»æÍ¼
+    // ç”»å¸ƒé‡ç»˜å›¾
     class MyCanvas extends JPanel
     {
         private static final long serialVersionUID = 1L;
@@ -99,9 +99,9 @@ public class Chart_test extends JFrame
             g.setColor(c);
             super.paintComponent(g);
 
-            // »æÖÆÆ½»¬µãµÄÇúÏß
+            // ç»˜åˆ¶å¹³æ»‘ç‚¹çš„æ›²çº¿
             g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            int w = XAxis_X;// ÆğÊ¼µã
+            int w = XAxis_X;// èµ·å§‹ç‚¹
             int xDelta = w / MAX_COUNT_OF_VALUES;
             int length = values.size() - 10;
 
@@ -112,43 +112,43 @@ public class Chart_test extends JFrame
                              xDelta * (MAX_COUNT_OF_VALUES - length + i + 1),
                              values.get(i + 1));
             }
-            // »­×ø±êÖá
-            g2D.setStroke(new BasicStroke(Float.parseFloat("2.0F")));// ÖáÏß´Ö¶È
-            // XÖáÒÔ¼°·½Ïò¼ıÍ·
-            g.drawLine(Origin_X, Origin_Y, XAxis_X, XAxis_Y);// xÖáÏßµÄÖáÏß
-            g.drawLine(XAxis_X, XAxis_Y, XAxis_X - 5, XAxis_Y - 5);// ÉÏ±ß¼ıÍ·
-            g.drawLine(XAxis_X, XAxis_Y, XAxis_X + 5, XAxis_Y + 5);// ÏÂ±ß¼ıÍ·
+            // ç”»åæ ‡è½´
+            g2D.setStroke(new BasicStroke(Float.parseFloat("2.0F")));// è½´çº¿ç²—åº¦
+            // Xè½´ä»¥åŠæ–¹å‘ç®­å¤´
+            g.drawLine(Origin_X, Origin_Y, XAxis_X, XAxis_Y);// xè½´çº¿çš„è½´çº¿
+            g.drawLine(XAxis_X, XAxis_Y, XAxis_X - 5, XAxis_Y - 5);// ä¸Šè¾¹ç®­å¤´
+            g.drawLine(XAxis_X, XAxis_Y, XAxis_X + 5, XAxis_Y + 5);// ä¸‹è¾¹ç®­å¤´
 
-            // YÖáÒÔ¼°·½Ïò¼ıÍ·
+            // Yè½´ä»¥åŠæ–¹å‘ç®­å¤´
             g.drawLine(Origin_X, Origin_Y, YAxis_X, YAxis_Y);
             g.drawLine(YAxis_X, YAxis_Y, YAxis_X - 5, YAxis_Y + 5);
             g.drawLine(YAxis_X, YAxis_Y, YAxis_X + 5, YAxis_Y + 5);
 
-            // »­XÖáÉÏµÄÊ±¼ä¿Ì¶È£¨´Ó×ø±êÖáÔ­µãÆğ£¬Ã¿¸ôTIME_INTERVAL(Ê±¼ä·Ö¶È)ÏñËØ»­Ò»Ê±¼äµã£¬µ½XÖáÖÕµãÖ¹£©
+            // ç”»Xè½´ä¸Šçš„æ—¶é—´åˆ»åº¦ï¼ˆä»åæ ‡è½´åŸç‚¹èµ·ï¼Œæ¯éš”TIME_INTERVAL(æ—¶é—´åˆ†åº¦)åƒç´ ç”»ä¸€æ—¶é—´ç‚¹ï¼Œåˆ°Xè½´ç»ˆç‚¹æ­¢ï¼‰
             g.setColor(Color.BLUE);
             g2D.setStroke(new BasicStroke(Float.parseFloat("1.0f")));
 
-            // XÖá¿Ì¶ÈÒÀ´Î±ä»¯Çé¿ö
+            // Xè½´åˆ»åº¦ä¾æ¬¡å˜åŒ–æƒ…å†µ
             for (int i = Origin_X, j = 0; i < XAxis_X; i += TIME_INTERVAL, j += TIME_INTERVAL)
             {
                 g.drawString(" " + j, i - 10, Origin_Y + 20);
             }
-            g.drawString("Ê±¼ä", XAxis_X + 5, XAxis_Y + 5);
+            g.drawString("æ—¶é—´", XAxis_X + 5, XAxis_Y + 5);
 
-            // »­YÖáÉÏÑªÑ¹¿Ì¶È£¨´Ó×ø±êÔ­µãÆğ£¬Ã¿¸ô10ÏñËØ»­Ò»Ñ¹Á¦Öµ£¬µ½YÖáÖÕµãÖ¹£©
+            // ç”»Yè½´ä¸Šè¡€å‹åˆ»åº¦ï¼ˆä»åæ ‡åŸç‚¹èµ·ï¼Œæ¯éš”10åƒç´ ç”»ä¸€å‹åŠ›å€¼ï¼Œåˆ°Yè½´ç»ˆç‚¹æ­¢ï¼‰
             for (int i = Origin_Y, j = 0; i > YAxis_Y; i -= PRESS_INTERVAL, j += TIME_INTERVAL)
             {
                 g.drawString(j + " ", Origin_X - 30, i + 3);
             }
-            g.drawString("·ù¶È/Amplitude", YAxis_X - 5, YAxis_Y - 5);// ÑªÑ¹¿Ì¶ÈĞ¡¼ıÍ·Öµ
-            // »­Íø¸ñÏß
+            g.drawString("å¹…åº¦/Amplitude", YAxis_X - 5, YAxis_Y - 5);// è¡€å‹åˆ»åº¦å°ç®­å¤´å€¼
+            // ç”»ç½‘æ ¼çº¿
             g.setColor(Color.BLACK);
-            // ×ø±êÄÚ²¿ºáÏß
+            // åæ ‡å†…éƒ¨æ¨ªçº¿
             for (int i = Origin_Y; i > YAxis_Y; i -= PRESS_INTERVAL)
             {
                 g.drawLine(Origin_X, i, Origin_X + 10 * TIME_INTERVAL, i);
             }
-            // ×ø±êÄÚ²¿ÊúÏß
+            // åæ ‡å†…éƒ¨ç«–çº¿
             for (int i = Origin_X; i < XAxis_X; i += TIME_INTERVAL)
             {
                 g.drawLine(i, Origin_Y, i, Origin_Y - 6 * PRESS_INTERVAL);

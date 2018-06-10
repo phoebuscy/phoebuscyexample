@@ -50,20 +50,20 @@ public class DbManager
     private void initDb()
     {
         Connection mysqlConn = connectMySql(userName, password);
-        createTwsDb(mysqlConn, dbname);  // Èç¹û²»´æÔÚÔò´´½¨TwsDbÊı¾İ¿â
+        createTwsDb(mysqlConn, dbname);  // å¦‚æœä¸å­˜åœ¨åˆ™åˆ›å»ºTwsDbæ•°æ®åº“
         connection = connectDB(dbname, userName, password);
-        createTables(connection);  // ´´½¨¸÷ÖÖ±í
+        createTables(connection);  // åˆ›å»ºå„ç§è¡¨
         createProcedure(connection);
     }
 
-    // ´´½¨Êı¾İ¿âµÄ¸÷ÖÖ±í
+    // åˆ›å»ºæ•°æ®åº“çš„å„ç§è¡¨
     private void createTables(Connection connection)
     {
         createQueryIDTable(connection);
 
     }
 
-    // ´´½¨Êı¾İ¿âµÄ´æ´¢¹ı³Ì
+    // åˆ›å»ºæ•°æ®åº“çš„å­˜å‚¨è¿‡ç¨‹
     private void createProcedure(Connection connection)
     {
         createQueryReqIdProc(connection);
@@ -76,7 +76,7 @@ public class DbManager
             try
             {
                 Statement statement = mysqlConn.createStatement();
-                String hrappSQL = "CREATE DATABASE  IF NOT EXISTS " + dbname;  // ¼ÓÉÏIF NOT EXISTS¾ÍËãÊı¾İ¿âÒÑ¾­´æÔÚ£¬°ÑÔ­À´µÄ¸²¸ÇµôÁË
+                String hrappSQL = "CREATE DATABASE  IF NOT EXISTS " + dbname;  // åŠ ä¸ŠIF NOT EXISTSå°±ç®—æ•°æ®åº“å·²ç»å­˜åœ¨ï¼ŒæŠŠåŸæ¥çš„è¦†ç›–æ‰äº†
                 int ret = statement.executeUpdate(hrappSQL);
                 statement.close();
                 mysqlConn.close();
@@ -90,7 +90,7 @@ public class DbManager
     }
 
     /**
-     * Á¬½Óµ½Êı¾İ¿â
+     * è¿æ¥åˆ°æ•°æ®åº“
      */
     private Connection connectDB(String dbname, String userName, String password)
     {
@@ -103,7 +103,7 @@ public class DbManager
         catch (ClassNotFoundException e)
         {
             // TODO Auto-generated catch block
-            LogApp.error("add mysql jdbc driver failed");  // ÕÒ²»µ½Çı¶¯£¡
+            LogApp.error("add mysql jdbc driver failed");  // æ‰¾ä¸åˆ°é©±åŠ¨ï¼
             e.printStackTrace();
         }
         try
@@ -124,7 +124,7 @@ public class DbManager
     }
 
     /**
-     * Á¬½Óµ½Êı¾İ¿â
+     * è¿æ¥åˆ°æ•°æ®åº“
      */
     private Connection connectMySql(String userName, String password)
     {
@@ -137,7 +137,7 @@ public class DbManager
         catch (ClassNotFoundException e)
         {
             // TODO Auto-generated catch block
-            LogApp.error("add mysql jdbc driver failed");  // ÕÒ²»µ½Çı¶¯£¡
+            LogApp.error("add mysql jdbc driver failed");  // æ‰¾ä¸åˆ°é©±åŠ¨ï¼
             e.printStackTrace();
         }
         try
@@ -158,7 +158,7 @@ public class DbManager
     }
 
     /**
-     * ´´½¨²éÑ¯id±í
+     * åˆ›å»ºæŸ¥è¯¢idè¡¨
      *
      * @param connection
      */
@@ -168,16 +168,16 @@ public class DbManager
         {
             try
             {
-                //¼ÓÔØÇı¶¯
+                //åŠ è½½é©±åŠ¨
                 Class.forName("com.mysql.jdbc.Driver");
-                //Á´½Óµ½Êı¾İ¿â
+                //é“¾æ¥åˆ°æ•°æ®åº“
                 String url = "jdbc:mysql://localhost:3306/" + dbname + "?serverTimezone=UTC";
-                //»ñÈ¡¶ÔÏó
+                //è·å–å¯¹è±¡
                 Statement stmt = connection.createStatement();
                 String delTableSqlStr = "drop table if exists queryidtable;";
                 stmt.execute(delTableSqlStr);
 
-                //²åÈë¼ÇÂ¼µ½Êı¾İ¿âÖĞ
+                //æ’å…¥è®°å½•åˆ°æ•°æ®åº“ä¸­
                 String sqlstr = "create table queryidtable(reqid int(1));";
                 int ret = stmt.executeUpdate(sqlstr);
 
@@ -185,19 +185,19 @@ public class DbManager
                 stmt.executeUpdate(sqlInsertData);
 
 
-                System.out.println("´´½¨³É¹¦£¡");
+                System.out.println("åˆ›å»ºæˆåŠŸï¼");
                 stmt.close();
             }
             catch (Exception e)
             {
-                System.out.println("´´½¨Ê§°Ü£¡»òÒÑ¾­´æÔÚ¸Ã±í¸ñ" + e);
+                System.out.println("åˆ›å»ºå¤±è´¥ï¼æˆ–å·²ç»å­˜åœ¨è¯¥è¡¨æ ¼" + e);
                 e.printStackTrace();
             }
         }
     }
 
     /**
-     * ´´½¨²éÑ¯reqidµÄ´æ´¢¹ı³Ì
+     * åˆ›å»ºæŸ¥è¯¢reqidçš„å­˜å‚¨è¿‡ç¨‹
      * @param connection
      */
     private void createQueryReqIdProc(Connection connection)

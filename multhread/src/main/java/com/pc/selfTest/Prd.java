@@ -4,27 +4,27 @@ import java.time.LocalDateTime;
 
 public class Prd extends Thread
 {
-    // Ã¿´ÎÉú²úµÄ²úÆ·ÊıÁ¿
+    // æ¯æ¬¡ç”Ÿäº§çš„äº§å“æ•°é‡
     private int num;
 
-    // ËùÔÚ·ÅÖÃµÄ²Ö¿â
+    // æ‰€åœ¨æ”¾ç½®çš„ä»“åº“
     private Storage storageQue;
 
-    // ¹¹Ôìº¯Êı£¬ÉèÖÃ²Ö¿â
+    // æ„é€ å‡½æ•°ï¼Œè®¾ç½®ä»“åº“
     //  public Producer(Storage storage)
     public Prd(Storage storage)
     {
         this.storageQue = storage;
     }
 
-    // Ïß³Ìrunº¯Êı
+    // çº¿ç¨‹runå‡½æ•°
     public void run()
     {
         while (true)
         {
             int random = (int) (Math.random() * 20);
             produce(random);
-            System.out.println(" Éú²ú²úÆ·£¬ÊıÁ¿£º" + random + " \t" + LocalDateTime.now().toString());
+            System.out.println(" ç”Ÿäº§äº§å“ï¼Œæ•°é‡ï¼š" + random + " \t" + LocalDateTime.now().toString());
             int sleepS = 1;
             if (random > 3 && random <= 6)
             {
@@ -44,7 +44,7 @@ public class Prd extends Thread
         }
     }
 
-    // µ÷ÓÃ²Ö¿âStorageµÄÉú²úº¯Êı
+    // è°ƒç”¨ä»“åº“Storageçš„ç”Ÿäº§å‡½æ•°
     public void produce(int num)
     {
         storageQue.produce(num);

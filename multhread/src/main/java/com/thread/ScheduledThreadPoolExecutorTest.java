@@ -19,8 +19,8 @@ public class ScheduledThreadPoolExecutorTest
             @Override
             public void run()
             {
-                System.out.println("ÈÎÎñ1Ö´ĞĞÊ±¼ä£º" + sdf.format(new Date()));
-                throw new RuntimeException();  // ¹ÊÒâÅ×³öÒì³££¬ÈÃµÚÒ»¸öÏß³ÌËÀµô£¬²»Ó°ÏìµÚ¶ş¸öÏß³Ì
+                System.out.println("ä»»åŠ¡1æ‰§è¡Œæ—¶é—´ï¼š" + sdf.format(new Date()));
+                throw new RuntimeException();  // æ•…æ„æŠ›å‡ºå¼‚å¸¸ï¼Œè®©ç¬¬ä¸€ä¸ªçº¿ç¨‹æ­»æ‰ï¼Œä¸å½±å“ç¬¬äºŒä¸ªçº¿ç¨‹
             }
         };
         TimerTask timerTask2 = new TimerTask()
@@ -29,11 +29,11 @@ public class ScheduledThreadPoolExecutorTest
             public void run()
             {
 
-                System.out.println("ÈÎÎñ2Ö´ĞĞÊ±¼ä£º" + sdf.format(new Date()));
+                System.out.println("ä»»åŠ¡2æ‰§è¡Œæ—¶é—´ï¼š" + sdf.format(new Date()));
             }
         };
 
-        System.out.println("µ±Ç°Ê±¼ä£º" + sdf.format(new Date()));
+        System.out.println("å½“å‰æ—¶é—´ï¼š" + sdf.format(new Date()));
 
         ScheduledThreadPoolExecutor poolExecutor = new ScheduledThreadPoolExecutor(2);
         poolExecutor.scheduleAtFixedRate(timerTask1, 0, 1000, TimeUnit.MILLISECONDS);

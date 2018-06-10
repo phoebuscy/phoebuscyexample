@@ -24,9 +24,9 @@ public class FreeChartTwo extends JFrame
 
     public static void main(String[] args)
     {
-        //Ê±¼äĞòÁĞÍ¼
+        //æ—¶é—´åºåˆ—å›¾
         TimeSeries timeseries = new TimeSeries("L&G European Index Trust", Month.class);
-        timeseries.add(new Month(2, 2001), 181.8D);//ÕâÀïÓÃµÄÊÇMonth.class£¬Í¬Ñù»¹ÓĞDay.class Year.class µÈµÈ
+        timeseries.add(new Month(2, 2001), 181.8D);//è¿™é‡Œç”¨çš„æ˜¯Month.classï¼ŒåŒæ ·è¿˜æœ‰Day.class Year.class ç­‰ç­‰
         timeseries.add(new Month(3, 2001), 167.3D);
         timeseries.add(new Month(4, 2001), 153.8D);
         timeseries.add(new Month(5, 2001), 167.6D);
@@ -67,7 +67,7 @@ public class FreeChartTwo extends JFrame
         TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();
         timeseriescollection.addSeries(timeseries);
         timeseriescollection.addSeries(timeseries1);
-        timeseriescollection.setDomainIsPointsInTime(true); //domainÖáÉÏµÄ¿Ì¶Èµã´ú±íµÄÊÇÊ±¼äµã¶ø²»ÊÇÊ±¼ä¶Î
+        timeseriescollection.setDomainIsPointsInTime(true); //domainè½´ä¸Šçš„åˆ»åº¦ç‚¹ä»£è¡¨çš„æ˜¯æ—¶é—´ç‚¹è€Œä¸æ˜¯æ—¶é—´æ®µ
         JFreeChart jfreechart = ChartFactory.createTimeSeriesChart("Legal & General Unit Trust Prices",
                                                                    "Date",
                                                                    "Price Per Unit",
@@ -76,14 +76,14 @@ public class FreeChartTwo extends JFrame
                                                                    true,
                                                                    false);
         jfreechart.setBackgroundPaint(Color.white);
-        XYPlot xyplot = (XYPlot)jfreechart.getPlot(); //»ñµÃ plot : XYPlot!!
+        XYPlot xyplot = (XYPlot)jfreechart.getPlot(); //è·å¾— plot : XYPlot!!
         xyplot.setBackgroundPaint(Color.lightGray);
         xyplot.setDomainGridlinePaint(Color.white);
         xyplot.setRangeGridlinePaint(Color.white);
         xyplot.setAxisOffset(new RectangleInsets(5D, 5D, 5D, 5D));
         xyplot.setDomainCrosshairVisible(true);
         xyplot.setRangeCrosshairVisible(true);
-        ChartFrame frame=new ChartFrame ("ÕÛÏßÍ¼ ", jfreechart, true);
+        ChartFrame frame=new ChartFrame ("æŠ˜çº¿å›¾ ", jfreechart, true);
         frame.pack();
         frame.setVisible(true);
     }

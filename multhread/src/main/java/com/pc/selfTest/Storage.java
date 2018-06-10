@@ -14,46 +14,46 @@ public class Storage
 
     private ConcurrentLinkedQueue<Integer> linkedQueue = new ConcurrentLinkedQueue<>();
 
-    // Ëø
+    // é”
     private final Lock lock = new ReentrantLock();
 
 
-    // ²Ö¿â¿ÕµÄÌõ¼ş±äÁ¿
+    // ä»“åº“ç©ºçš„æ¡ä»¶å˜é‡
     private final Condition empty = lock.newCondition();
 
-    // Éú²únum¸ö²úÆ·
+    // ç”Ÿäº§numä¸ªäº§å“
     public void produce(int num)
     {
-        // »ñµÃËø
+        // è·å¾—é”
         lock.lock();
 
-        // Éú²úÌõ¼şÂú×ãÇé¿öÏÂ£¬Éú²únum¸ö²úÆ·
+        // ç”Ÿäº§æ¡ä»¶æ»¡è¶³æƒ…å†µä¸‹ï¼Œç”Ÿäº§numä¸ªäº§å“
         for (int i = 1; i <= num; ++i)
         {
            linkedQueue.offer(i);
         }
 
-        System.out.println("[Éú²ú²úÆ·] " + "ÊıÁ¿ " + num + " \t" + LocalDateTime.now().toString());
+        System.out.println("[ç”Ÿäº§äº§å“] " + "æ•°é‡ " + num + " \t" + LocalDateTime.now().toString());
 
-        // »½ĞÑÆäËûËùÓĞÏß³Ì
+        // å”¤é†’å…¶ä»–æ‰€æœ‰çº¿ç¨‹
         empty.signalAll();
 
-        // ÊÍ·ÅËø
+        // é‡Šæ”¾é”
         lock.unlock();
     }
 
-    // Ïû·Ñnum¸ö²úÆ·
+    // æ¶ˆè´¹numä¸ªäº§å“
     public void consume(int num)
     {
-        // »ñµÃËø
+        // è·å¾—é”
         lock.lock();
-        // Èç¹û²Ö¿â´æ´¢Á¿²»×ã
+        // å¦‚æœä»“åº“å­˜å‚¨é‡ä¸è¶³
         while (linkedQueue.isEmpty())
         {
-            System.out.println("[²Ö¿âÊıÁ¿] £º0  µÈ´ı..." + " \t" + LocalDateTime.now().toString());
+            System.out.println("[ä»“åº“æ•°é‡] ï¼š0  ç­‰å¾…..." + " \t" + LocalDateTime.now().toString());
             try
             {
-                // ÓÉÓÚÌõ¼ş²»Âú×ã£¬Ïû·Ñ×èÈû
+                // ç”±äºæ¡ä»¶ä¸æ»¡è¶³ï¼Œæ¶ˆè´¹é˜»å¡
                 empty.await();
             }
             catch (InterruptedException e)
@@ -63,12 +63,12 @@ public class Storage
         }
 
         int poll = linkedQueue.poll();
-        System.out.println("[Ïû·ÑÒ»¸ö] ÖµÎª£º " +  poll +  "\t" + LocalDateTime.now().toString());
+        System.out.println("[æ¶ˆè´¹ä¸€ä¸ª] å€¼ä¸ºï¼š " +  poll +  "\t" + LocalDateTime.now().toString());
 
-        // »½ĞÑÆäËûËùÓĞÏß³Ì
+        // å”¤é†’å…¶ä»–æ‰€æœ‰çº¿ç¨‹
         empty.signalAll();
 
-        // ÊÍ·ÅËø
+        // é‡Šæ”¾é”
         lock.unlock();
     }
 

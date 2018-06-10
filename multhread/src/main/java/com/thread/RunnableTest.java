@@ -11,9 +11,9 @@ public class RunnableTest
 
     public static void main(String[] args) throws Exception
     {
-        System.out.println("Ê¹ÓÃÏß³Ì³ØÔËĞĞ Runnable ÈÎÎñ£º");
+        System.out.println("ä½¿ç”¨çº¿ç¨‹æ± è¿è¡Œ Runnable ä»»åŠ¡ï¼š");
 
-        ExecutorService threadPool = Executors.newFixedThreadPool(5); // ´´½¨´óĞ¡¹Ì¶¨Îª 5 µÄÏß³Ì³Ø
+        ExecutorService threadPool = Executors.newFixedThreadPool(5); // åˆ›å»ºå¤§å°å›ºå®šä¸º 5 çš„çº¿ç¨‹æ± 
 
         List<AccumRunnable> tasks = new ArrayList<>(10);
 
@@ -22,16 +22,16 @@ public class RunnableTest
             AccumRunnable task = new AccumRunnable(i * 10 + 1, (i + 1) * 10);
             tasks.add(task);
 
-            threadPool.execute(task); // ÈÃÏß³Ì³ØÖ´ĞĞÈÎÎñ task
+            threadPool.execute(task); // è®©çº¿ç¨‹æ± æ‰§è¡Œä»»åŠ¡ task
         }
-        threadPool.shutdown(); // ÏòÏß³Ì³Ø·¢ËÍ¹Ø±ÕµÄÖ¸Áî£¬µÈµ½ÒÑ¾­Ìá½»µÄÈÎÎñ¶¼Ö´ĞĞÍê±ÏÖ®ºó£¬Ïß³Ì³Ø»á¹Ø±Õ
+        threadPool.shutdown(); // å‘çº¿ç¨‹æ± å‘é€å…³é—­çš„æŒ‡ä»¤ï¼Œç­‰åˆ°å·²ç»æäº¤çš„ä»»åŠ¡éƒ½æ‰§è¡Œå®Œæ¯•ä¹‹åï¼Œçº¿ç¨‹æ± ä¼šå…³é—­
 
-        threadPool.awaitTermination(1, TimeUnit.HOURS); // µÈ´ıÏß³Ì³Ø¹Ø±Õ£¬µÈ´ıµÄ×î´óÊ±¼äÎª 1 Ğ¡Ê±
+        threadPool.awaitTermination(1, TimeUnit.HOURS); // ç­‰å¾…çº¿ç¨‹æ± å…³é—­ï¼Œç­‰å¾…çš„æœ€å¤§æ—¶é—´ä¸º 1 å°æ—¶
 
         int total = 0;
         for (AccumRunnable task : tasks)
         {
-            total += task.getResult(); // µ÷ÓÃÔÚ AccumRunnable ¶¨ÒåµÄ getResult ·½·¨»ñµÃ·µ»ØµÄ½á¹û
+            total += task.getResult(); // è°ƒç”¨åœ¨ AccumRunnable å®šä¹‰çš„ getResult æ–¹æ³•è·å¾—è¿”å›çš„ç»“æœ
         }
 
         System.out.println("Total: " + total);
@@ -66,7 +66,7 @@ public class RunnableTest
             {
                 ex.printStackTrace(System.err);
             }
-            System.out.printf("(%s) - ÔËĞĞ½áÊø£¬½á¹ûÎª %d\n",
+            System.out.printf("(%s) - è¿è¡Œç»“æŸï¼Œç»“æœä¸º %d\n",
                     Thread.currentThread().getName(), result);
         }
 

@@ -5,19 +5,19 @@ import java.time.LocalDateTime;
 
 public class Cos extends Thread
 {
-    // Ã¿´ÎÏû·ÑµÄ²úÆ·ÊıÁ¿
+    // æ¯æ¬¡æ¶ˆè´¹çš„äº§å“æ•°é‡
     private int num;
 
-    // ËùÔÚ·ÅÖÃµÄ²Ö¿â
+    // æ‰€åœ¨æ”¾ç½®çš„ä»“åº“
     private Storage storageQue;
 
-    // ¹¹Ôìº¯Êı£¬ÉèÖÃ²Ö¿â
+    // æ„é€ å‡½æ•°ï¼Œè®¾ç½®ä»“åº“
     public Cos(Storage storage)
     {
         this.storageQue = storage;
     }
 
-    // Ïß³Ìrunº¯Êı
+    // çº¿ç¨‹runå‡½æ•°
     public void run()
     {
         int count = 0;
@@ -41,7 +41,7 @@ public class Cos extends Thread
         }
     }
 
-    // µ÷ÓÃ²Ö¿âStorageµÄÉú²úº¯Êı
+    // è°ƒç”¨ä»“åº“Storageçš„ç”Ÿäº§å‡½æ•°
     public void consume(int num)
     {
         storageQue.consume(num);

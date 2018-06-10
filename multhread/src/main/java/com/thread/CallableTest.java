@@ -12,24 +12,24 @@ public class CallableTest
 
     public static void main(String[] args) throws Exception
     {
-        System.out.println("Ê¹ÓÃÏß³Ì³ØÔËĞĞ Callable ÈÎÎñ£º");
+        System.out.println("ä½¿ç”¨çº¿ç¨‹æ± è¿è¡Œ Callable ä»»åŠ¡ï¼š");
 
-        ExecutorService threadPool = Executors.newFixedThreadPool(5); // ´´½¨´óĞ¡¹Ì¶¨Îª 5 µÄÏß³Ì³Ø
+        ExecutorService threadPool = Executors.newFixedThreadPool(5); // åˆ›å»ºå¤§å°å›ºå®šä¸º 5 çš„çº¿ç¨‹æ± 
 
         List<Future<Integer>> futures = new ArrayList<>(10);
 
         for (int i = 0; i < 10; i++)
         {
             AccumCallable task = new AccumCallable(i * 10 + 1, (i + 1) * 10);
-            Future<Integer> future = threadPool.submit(task); // Ìá½»ÈÎÎñ
+            Future<Integer> future = threadPool.submit(task); // æäº¤ä»»åŠ¡
             futures.add(future);
         }
-        threadPool.shutdown(); // ÏòÏß³Ì³Ø·¢ËÍ¹Ø±ÕµÄÖ¸Áî£¬µÈµ½ÒÑ¾­Ìá½»µÄÈÎÎñ¶¼Ö´ĞĞÍê±ÏÖ®ºó£¬Ïß³Ì³Ø»á¹Ø±Õ
+        threadPool.shutdown(); // å‘çº¿ç¨‹æ± å‘é€å…³é—­çš„æŒ‡ä»¤ï¼Œç­‰åˆ°å·²ç»æäº¤çš„ä»»åŠ¡éƒ½æ‰§è¡Œå®Œæ¯•ä¹‹åï¼Œçº¿ç¨‹æ± ä¼šå…³é—­
 
         int total = 0;
         for (Future<Integer> future : futures)
         {
-            total += future.get(); // ×èÈû£¬Ö±µ½ÈÎÎñ½áÊø£¬·µ»ØÈÎÎñµÄ½á¹û
+            total += future.get(); // é˜»å¡ï¼Œç›´åˆ°ä»»åŠ¡ç»“æŸï¼Œè¿”å›ä»»åŠ¡çš„ç»“æœ
         }
 
         System.out.println("Total: " + total);
@@ -56,7 +56,7 @@ public class CallableTest
                 result += i;
                 Thread.sleep(100);
             }
-            System.out.printf("(%s) - ÔËĞĞ½áÊø£¬½á¹ûÎª %d\n",
+            System.out.printf("(%s) - è¿è¡Œç»“æŸï¼Œç»“æœä¸º %d\n",
                     Thread.currentThread().getName(), result);
 
             return result;

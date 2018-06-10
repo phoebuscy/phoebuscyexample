@@ -1,7 +1,7 @@
 package com.pc;
 
 /**
- * Éú²úÕßÀàProducer¼Ì³ĞÏß³ÌÀàThread
+ * ç”Ÿäº§è€…ç±»Producerç»§æ‰¿çº¿ç¨‹ç±»Thread
  * <p>
  * Email:530025983@qq.com
  *
@@ -9,32 +9,32 @@ package com.pc;
  */
 public class Producer extends Thread
 {
-    // Ã¿´ÎÉú²úµÄ²úÆ·ÊıÁ¿
+    // æ¯æ¬¡ç”Ÿäº§çš„äº§å“æ•°é‡
     private int num;
 
-    // ËùÔÚ·ÅÖÃµÄ²Ö¿â
+    // æ‰€åœ¨æ”¾ç½®çš„ä»“åº“
     private Storage_withLock storage;
 
-    // ¹¹Ôìº¯Êı£¬ÉèÖÃ²Ö¿â
+    // æ„é€ å‡½æ•°ï¼Œè®¾ç½®ä»“åº“
   //  public Producer(Storage storage)
     public Producer(Storage_withLock storage)
     {
         this.storage = storage;
     }
 
-    // Ïß³Ìrunº¯Êı
+    // çº¿ç¨‹runå‡½æ•°
     public void run()
     {
         produce(num);
     }
 
-    // µ÷ÓÃ²Ö¿âStorageµÄÉú²úº¯Êı
+    // è°ƒç”¨ä»“åº“Storageçš„ç”Ÿäº§å‡½æ•°
     public void produce(int num)
     {
         storage.produce(num);
     }
 
-    // get/set·½·¨
+    // get/setæ–¹æ³•
     public int getNum()
     {
         return num;

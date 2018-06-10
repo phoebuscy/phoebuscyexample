@@ -1,7 +1,7 @@
 package com.pc;
 
 /**
- * Ïû·ÑÕßÀàConsumer¼Ì³ĞÏß³ÌÀàThread
+ * æ¶ˆè´¹è€…ç±»Consumerç»§æ‰¿çº¿ç¨‹ç±»Thread
  * <p>
  * Email:530025983@qq.com
  *
@@ -9,31 +9,31 @@ package com.pc;
  */
 public class Consumer extends Thread
 {
-    // Ã¿´ÎÏû·ÑµÄ²úÆ·ÊıÁ¿
+    // æ¯æ¬¡æ¶ˆè´¹çš„äº§å“æ•°é‡
     private int num;
 
-    // ËùÔÚ·ÅÖÃµÄ²Ö¿â
+    // æ‰€åœ¨æ”¾ç½®çš„ä»“åº“
     private Storage_withLock storage;
 
-    // ¹¹Ôìº¯Êı£¬ÉèÖÃ²Ö¿â
+    // æ„é€ å‡½æ•°ï¼Œè®¾ç½®ä»“åº“
     public Consumer(Storage_withLock storage)
     {
         this.storage = storage;
     }
 
-    // Ïß³Ìrunº¯Êı
+    // çº¿ç¨‹runå‡½æ•°
     public void run()
     {
         consume(num);
     }
 
-    // µ÷ÓÃ²Ö¿âStorageµÄÉú²úº¯Êı
+    // è°ƒç”¨ä»“åº“Storageçš„ç”Ÿäº§å‡½æ•°
     public void consume(int num)
     {
         storage.consume(num);
     }
 
-    // get/set·½·¨
+    // get/setæ–¹æ³•
     public int getNum()
     {
         return num;

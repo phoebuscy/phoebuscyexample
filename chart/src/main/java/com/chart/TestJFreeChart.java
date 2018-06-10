@@ -44,24 +44,24 @@ public class TestJFreeChart extends JFrame
     public static JFreeChart getFreeChart()
     {
         StandardChartTheme mChartTheme = new StandardChartTheme("CN");
-        mChartTheme.setLargeFont(new Font("ºÚÌå", Font.BOLD, 20));
-        mChartTheme.setExtraLargeFont(new Font("ËÎÌå", Font.PLAIN, 15));
-        mChartTheme.setRegularFont(new Font("ËÎÌå", Font.PLAIN, 15));
+        mChartTheme.setLargeFont(new Font("é»‘ä½“", Font.BOLD, 20));
+        mChartTheme.setExtraLargeFont(new Font("å®‹ä½“", Font.PLAIN, 15));
+        mChartTheme.setRegularFont(new Font("å®‹ä½“", Font.PLAIN, 15));
         ChartFactory.setChartTheme(mChartTheme);
         CategoryDataset mDataset = GetDataset();
 
-        JFreeChart mChart = ChartFactory.createLineChart("ÕÛÏßÍ¼",//Í¼Ãû×Ö
-                                                         "Äê·İ",//ºá×ø±ê
-                                                         "ÊıÁ¿",//×İ×ø±ê
-                                                         mDataset,//Êı¾İ¼¯
-                                                         PlotOrientation.VERTICAL, true, // ÏÔÊ¾Í¼Àı
-                                                         true, // ²ÉÓÃ±ê×¼Éú³ÉÆ÷
-                                                         false);// ÊÇ·ñÉú³É³¬Á´½Ó
+        JFreeChart mChart = ChartFactory.createLineChart("æŠ˜çº¿å›¾",//å›¾åå­—
+                                                         "å¹´ä»½",//æ¨ªåæ ‡
+                                                         "æ•°é‡",//çºµåæ ‡
+                                                         mDataset,//æ•°æ®é›†
+                                                         PlotOrientation.VERTICAL, true, // æ˜¾ç¤ºå›¾ä¾‹
+                                                         true, // é‡‡ç”¨æ ‡å‡†ç”Ÿæˆå™¨
+                                                         false);// æ˜¯å¦ç”Ÿæˆè¶…é“¾æ¥
 
         CategoryPlot mPlot = (CategoryPlot) mChart.getPlot();
         mPlot.setBackgroundPaint(Color.LIGHT_GRAY);
-        mPlot.setRangeGridlinePaint(Color.BLUE);//±³¾°µ×²¿ºáĞéÏß
-        mPlot.setOutlinePaint(Color.RED);//±ß½çÏß
+        mPlot.setRangeGridlinePaint(Color.BLUE);//èƒŒæ™¯åº•éƒ¨æ¨ªè™šçº¿
+        mPlot.setOutlinePaint(Color.RED);//è¾¹ç•Œçº¿
         return mChart;
     }
 

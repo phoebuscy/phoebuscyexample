@@ -6,48 +6,48 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ¶þ¡¢await() / signal()·½·¨
- * ÔÚJDK5.0Ö®ºó£¬JavaÌá¹©ÁË¸ü¼Ó½¡×³µÄÏß³Ì´¦Àí»úÖÆ£¬°üÀ¨Í¬²½¡¢Ëø¶¨¡¢Ïß³Ì³ØµÈ£¬ËüÃÇ¿ÉÒÔÊµÏÖ¸üÏ¸Á£¶ÈµÄÏß³Ì¿ØÖÆ¡£await()ºÍsignal()¾ÍÊÇÆäÖÐÓÃÀ´×öÍ¬²½µÄÁ½ÖÖ·½·¨£¬ËüÃÇµÄ¹¦ÄÜ»ù±¾ÉÏºÍwait() / nofity
- * ()ÏàÍ¬£¬ÍêÈ«¿ÉÒÔÈ¡´úËüÃÇ£¬µ«ÊÇËüÃÇºÍÐÂÒýÈëµÄËø¶¨»úÖÆLockÖ±½Ó¹Ò¹³£¬¾ßÓÐ¸ü´óµÄÁé»îÐÔ¡£Í¨¹ýÔÚLock¶ÔÏóÉÏµ÷ÓÃnewCondition()·½·¨£¬½«Ìõ¼þ±äÁ¿ºÍÒ»¸öËø¶ÔÏó½øÐÐ°ó¶¨£¬½ø¶ø¿ØÖÆ²¢·¢³ÌÐò·ÃÎÊ¾ºÕù×ÊÔ´µÄ°²È«¡£ÏÂÃæÀ´¿´´úÂë£º
+ * äºŒã€await() / signal()æ–¹æ³•
+ * åœ¨JDK5.0ä¹‹åŽï¼ŒJavaæä¾›äº†æ›´åŠ å¥å£®çš„çº¿ç¨‹å¤„ç†æœºåˆ¶ï¼ŒåŒ…æ‹¬åŒæ­¥ã€é”å®šã€çº¿ç¨‹æ± ç­‰ï¼Œå®ƒä»¬å¯ä»¥å®žçŽ°æ›´ç»†ç²’åº¦çš„çº¿ç¨‹æŽ§åˆ¶ã€‚await()å’Œsignal()å°±æ˜¯å…¶ä¸­ç”¨æ¥åšåŒæ­¥çš„ä¸¤ç§æ–¹æ³•ï¼Œå®ƒä»¬çš„åŠŸèƒ½åŸºæœ¬ä¸Šå’Œwait() / nofity
+ * ()ç›¸åŒï¼Œå®Œå…¨å¯ä»¥å–ä»£å®ƒä»¬ï¼Œä½†æ˜¯å®ƒä»¬å’Œæ–°å¼•å…¥çš„é”å®šæœºåˆ¶Lockç›´æŽ¥æŒ‚é’©ï¼Œå…·æœ‰æ›´å¤§çš„çµæ´»æ€§ã€‚é€šè¿‡åœ¨Lockå¯¹è±¡ä¸Šè°ƒç”¨newCondition()æ–¹æ³•ï¼Œå°†æ¡ä»¶å˜é‡å’Œä¸€ä¸ªé”å¯¹è±¡è¿›è¡Œç»‘å®šï¼Œè¿›è€ŒæŽ§åˆ¶å¹¶å‘ç¨‹åºè®¿é—®ç«žäº‰èµ„æºçš„å®‰å…¨ã€‚ä¸‹é¢æ¥çœ‹ä»£ç ï¼š
  * <p>
- * Ö»ÐèÒª¸üÐÂ²Ö¿âÀàStorageµÄ´úÂë¼´¿É£¬Éú²úÕßProducer¡¢Ïû·ÑÕßConsumer¡¢²âÊÔÀàTestµÄ´úÂë¾ù²»ÐèÒª½øÐÐÈÎºÎ¸ü¸Ä¡£ÕâÑùÎÒÃÇ¾ÍÖªµÀÎªÉñÂíÎÒÒªÔÚStorageÀàÖÐ¶¨Òåpublic void produce(int
- * num);ºÍpublic void consume(int num);
- * ·½·¨£¬²¢ÔÚÉú²úÕßÀàProducerºÍÏû·ÑÕßÀàConsumerÖÐµ÷ÓÃStorage
- * ÀàÖÐµÄÊµÏÖÁË°É¡£½«¿ÉÄÜ·¢ÉúµÄ±ä»¯¼¯ÖÐµ½Ò»¸öÀàÖÐ£¬²»Ó°ÏìÔ­ÓÐµÄ¹¹¼ÜÉè¼Æ£¬Í¬Ê±ÎÞÐèÐÞ¸ÄÆäËûÒµÎñ²ã´úÂë¡£ÎÞÒâÖ®ÖÐ£¬ÎÒÃÇºÃÏñÊ¹ÓÃÁËÄ³ÖÖÉè¼ÆÄ£Ê½£¬¾ßÌåÊÇÉ¶ÎÒÍü¼ÇÁË£¬°¡¹þ¹þ£¬µÈÎÒÏëÆðÀ´ÔÙ¸æËß´ó¼Ò~
+ * åªéœ€è¦æ›´æ–°ä»“åº“ç±»Storageçš„ä»£ç å³å¯ï¼Œç”Ÿäº§è€…Producerã€æ¶ˆè´¹è€…Consumerã€æµ‹è¯•ç±»Testçš„ä»£ç å‡ä¸éœ€è¦è¿›è¡Œä»»ä½•æ›´æ”¹ã€‚è¿™æ ·æˆ‘ä»¬å°±çŸ¥é“ä¸ºç¥žé©¬æˆ‘è¦åœ¨Storageç±»ä¸­å®šä¹‰public void produce(int
+ * num);å’Œpublic void consume(int num);
+ * æ–¹æ³•ï¼Œå¹¶åœ¨ç”Ÿäº§è€…ç±»Producerå’Œæ¶ˆè´¹è€…ç±»Consumerä¸­è°ƒç”¨Storage
+ * ç±»ä¸­çš„å®žçŽ°äº†å§ã€‚å°†å¯èƒ½å‘ç”Ÿçš„å˜åŒ–é›†ä¸­åˆ°ä¸€ä¸ªç±»ä¸­ï¼Œä¸å½±å“åŽŸæœ‰çš„æž„æž¶è®¾è®¡ï¼ŒåŒæ—¶æ— éœ€ä¿®æ”¹å…¶ä»–ä¸šåŠ¡å±‚ä»£ç ã€‚æ— æ„ä¹‹ä¸­ï¼Œæˆ‘ä»¬å¥½åƒä½¿ç”¨äº†æŸç§è®¾è®¡æ¨¡å¼ï¼Œå…·ä½“æ˜¯å•¥æˆ‘å¿˜è®°äº†ï¼Œå•Šå“ˆå“ˆï¼Œç­‰æˆ‘æƒ³èµ·æ¥å†å‘Šè¯‰å¤§å®¶~
  */
 
 
 public class Storage_withLock
 {
 
-    // ²Ö¿â×î´ó´æ´¢Á¿
+    // ä»“åº“æœ€å¤§å­˜å‚¨é‡
     private final int MAX_SIZE = 100;
 
-    // ²Ö¿â´æ´¢µÄÔØÌå
+    // ä»“åº“å­˜å‚¨çš„è½½ä½“
     private LinkedList<Object> list = new LinkedList<Object>();
 
-    // Ëø
+    // é”
     private final Lock lock = new ReentrantLock();
 
-    // ²Ö¿âÂúµÄÌõ¼þ±äÁ¿
+    // ä»“åº“æ»¡çš„æ¡ä»¶å˜é‡
     private final Condition full = lock.newCondition();
 
-    // ²Ö¿â¿ÕµÄÌõ¼þ±äÁ¿
+    // ä»“åº“ç©ºçš„æ¡ä»¶å˜é‡
     private final Condition empty = lock.newCondition();
 
-    // Éú²únum¸ö²úÆ·
+    // ç”Ÿäº§numä¸ªäº§å“
     public void produce(int num)
     {
-        // »ñµÃËø
+        // èŽ·å¾—é”
         lock.lock();
 
-        // Èç¹û²Ö¿âÊ£ÓàÈÝÁ¿²»×ã
+        // å¦‚æžœä»“åº“å‰©ä½™å®¹é‡ä¸è¶³
         while (list.size() + num > MAX_SIZE)
         {
-            System.out.println("¡¾ÒªÉú²úµÄ²úÆ·ÊýÁ¿¡¿:" + num + "/t¡¾¿â´æÁ¿¡¿:" + list.size() + "/tÔÝÊ±²»ÄÜÖ´ÐÐÉú²úÈÎÎñ!");
+            System.out.println("ã€è¦ç”Ÿäº§çš„äº§å“æ•°é‡ã€‘:" + num + "/tã€åº“å­˜é‡ã€‘:" + list.size() + "/tæš‚æ—¶ä¸èƒ½æ‰§è¡Œç”Ÿäº§ä»»åŠ¡!");
             try
             {
-                // ÓÉÓÚÌõ¼þ²»Âú×ã£¬Éú²ú×èÈû
+                // ç”±äºŽæ¡ä»¶ä¸æ»¡è¶³ï¼Œç”Ÿäº§é˜»å¡ž
                 full.await();
             }
             catch (InterruptedException e)
@@ -56,35 +56,35 @@ public class Storage_withLock
             }
         }
 
-        // Éú²úÌõ¼þÂú×ãÇé¿öÏÂ£¬Éú²únum¸ö²úÆ·
+        // ç”Ÿäº§æ¡ä»¶æ»¡è¶³æƒ…å†µä¸‹ï¼Œç”Ÿäº§numä¸ªäº§å“
         for (int i = 1; i <= num; ++i)
         {
             list.add(new Object());
         }
 
-        System.out.println("¡¾ÒÑ¾­Éú²ú²úÆ·Êý¡¿:" + num + "/t¡¾ÏÖ²Ö´¢Á¿Îª¡¿:" + list.size());
+        System.out.println("ã€å·²ç»ç”Ÿäº§äº§å“æ•°ã€‘:" + num + "/tã€çŽ°ä»“å‚¨é‡ä¸ºã€‘:" + list.size());
 
-        // »½ÐÑÆäËûËùÓÐÏß³Ì
+        // å”¤é†’å…¶ä»–æ‰€æœ‰çº¿ç¨‹
         full.signalAll();
         empty.signalAll();
 
-        // ÊÍ·ÅËø
+        // é‡Šæ”¾é”
         lock.unlock();
     }
 
-    // Ïû·Ñnum¸ö²úÆ·
+    // æ¶ˆè´¹numä¸ªäº§å“
     public void consume(int num)
     {
-        // »ñµÃËø
+        // èŽ·å¾—é”
         lock.lock();
 
-        // Èç¹û²Ö¿â´æ´¢Á¿²»×ã
+        // å¦‚æžœä»“åº“å­˜å‚¨é‡ä¸è¶³
         while (list.size() < num)
         {
-            System.out.println("¡¾ÒªÏû·ÑµÄ²úÆ·ÊýÁ¿¡¿:" + num + "/t¡¾¿â´æÁ¿¡¿:" + list.size() + "/tÔÝÊ±²»ÄÜÖ´ÐÐÉú²úÈÎÎñ!");
+            System.out.println("ã€è¦æ¶ˆè´¹çš„äº§å“æ•°é‡ã€‘:" + num + "/tã€åº“å­˜é‡ã€‘:" + list.size() + "/tæš‚æ—¶ä¸èƒ½æ‰§è¡Œç”Ÿäº§ä»»åŠ¡!");
             try
             {
-                // ÓÉÓÚÌõ¼þ²»Âú×ã£¬Ïû·Ñ×èÈû
+                // ç”±äºŽæ¡ä»¶ä¸æ»¡è¶³ï¼Œæ¶ˆè´¹é˜»å¡ž
                 empty.await();
             }
             catch (InterruptedException e)
@@ -93,23 +93,23 @@ public class Storage_withLock
             }
         }
 
-        // Ïû·ÑÌõ¼þÂú×ãÇé¿öÏÂ£¬Ïû·Ñnum¸ö²úÆ·
+        // æ¶ˆè´¹æ¡ä»¶æ»¡è¶³æƒ…å†µä¸‹ï¼Œæ¶ˆè´¹numä¸ªäº§å“
         for (int i = 1; i <= num; ++i)
         {
             list.remove();
         }
 
-        System.out.println("¡¾ÒÑ¾­Ïû·Ñ²úÆ·Êý¡¿:" + num + "/t¡¾ÏÖ²Ö´¢Á¿Îª¡¿:" + list.size());
+        System.out.println("ã€å·²ç»æ¶ˆè´¹äº§å“æ•°ã€‘:" + num + "/tã€çŽ°ä»“å‚¨é‡ä¸ºã€‘:" + list.size());
 
-        // »½ÐÑÆäËûËùÓÐÏß³Ì
+        // å”¤é†’å…¶ä»–æ‰€æœ‰çº¿ç¨‹
         full.signalAll();
         empty.signalAll();
 
-        // ÊÍ·ÅËø
+        // é‡Šæ”¾é”
         lock.unlock();
     }
 
-    // set/get·½·¨
+    // set/getæ–¹æ³•
     public int getMAX_SIZE()
     {
         return MAX_SIZE;

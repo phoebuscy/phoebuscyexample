@@ -24,35 +24,35 @@ public class LineCharts extends ApplicationFrame
 
     public static void main(String[] args)
     {
-        LineCharts fjc = new LineCharts("ÕÛÏßÍ¼");
+        LineCharts fjc = new LineCharts("æŠ˜çº¿å›¾");
         fjc.pack();
         RefineryUtilities.centerFrameOnScreen(fjc);
         fjc.setVisible(true);
     }
 
-    // Éú³ÉÏÔÊ¾Í¼±íµÄÃæ°å
+    // ç”Ÿæˆæ˜¾ç¤ºå›¾è¡¨çš„é¢æ¿
     public static JPanel createDemoLine()
     {
         JFreeChart jfreechart = createChart(createDataset());
         return new ChartPanel(jfreechart);
     }
 
-    // Éú³ÉÍ¼±íÖ÷¶ÔÏóJFreeChart
+    // ç”Ÿæˆå›¾è¡¨ä¸»å¯¹è±¡JFreeChart
     public static JFreeChart createChart(DefaultCategoryDataset linedataset)
     {
-        // ¶¨ÒåÍ¼±í¶ÔÏó
-        JFreeChart chart = ChartFactory.createLineChart("Ò»¼¾¶ÈÏúÊÛÇúÏß", //ÕÛÏßÍ¼Ãû³Æ
-                                                        "Ê±¼ä", // ºá×ø±êÃû³Æ
-                                                        "ÏúÊÛ¶î(°ÙÍò)", // ×İ×ø±êÃû³Æ
-                                                        linedataset, // Êı¾İ
-                                                        PlotOrientation.VERTICAL, // Ë®Æ½ÏÔÊ¾Í¼Ïñ
+        // å®šä¹‰å›¾è¡¨å¯¹è±¡
+        JFreeChart chart = ChartFactory.createLineChart("ä¸€å­£åº¦é”€å”®æ›²çº¿", //æŠ˜çº¿å›¾åç§°
+                                                        "æ—¶é—´", // æ¨ªåæ ‡åç§°
+                                                        "é”€å”®é¢(ç™¾ä¸‡)", // çºµåæ ‡åç§°
+                                                        linedataset, // æ•°æ®
+                                                        PlotOrientation.VERTICAL, // æ°´å¹³æ˜¾ç¤ºå›¾åƒ
                                                         true, // include legend
                                                         true, // tooltips
                                                         false // urls
                                                        );
         CategoryPlot plot = chart.getCategoryPlot();
-        plot.setRangeGridlinesVisible(true); //ÊÇ·ñÏÔÊ¾¸ñ×ÓÏß
-        plot.setBackgroundAlpha(0.3f); //ÉèÖÃ±³¾°Í¸Ã÷¶È
+        plot.setRangeGridlinesVisible(true); //æ˜¯å¦æ˜¾ç¤ºæ ¼å­çº¿
+        plot.setBackgroundAlpha(0.3f); //è®¾ç½®èƒŒæ™¯é€æ˜åº¦
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setAutoRangeIncludesZero(true);
@@ -61,18 +61,18 @@ public class LineCharts extends ApplicationFrame
         return chart;
     }
 
-    // Éú³ÉÊı¾İ
+    // ç”Ÿæˆæ•°æ®
     public static DefaultCategoryDataset createDataset()
     {
         DefaultCategoryDataset linedataset = new DefaultCategoryDataset();
-        // ¸÷ÇúÏßÃû³Æ
-        String series1 = "±ùÏä";
-        String series2 = "²Êµç";
-        String series3 = "Ï´ÒÂ»ú";
-        // ºáÖáÃû³Æ(ÁĞÃû³Æ)
-        String type1 = "1ÔÂ";
-        String type2 = "2ÔÂ";
-        String type3 = "3ÔÂ";
+        // å„æ›²çº¿åç§°
+        String series1 = "å†°ç®±";
+        String series2 = "å½©ç”µ";
+        String series3 = "æ´—è¡£æœº";
+        // æ¨ªè½´åç§°(åˆ—åç§°)
+        String type1 = "1æœˆ";
+        String type2 = "2æœˆ";
+        String type3 = "3æœˆ";
         linedataset.addValue(0.0, series1, type1);
         linedataset.addValue(4.2, series1, type2);
         linedataset.addValue(3.9, series1, type3);

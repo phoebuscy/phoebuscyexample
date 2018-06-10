@@ -32,8 +32,8 @@ public class RealTimeChartTest extends ChartPanel
 
     public static void main(String[] args)
     {
-        JFrame frame = new JFrame("ÊµÊ±Êı¾İ");
-        RealTimeChartTest rtcp = new RealTimeChartTest("Ëæ»úÊı¾İ", "±êÌâ", "yaxisName");
+        JFrame frame = new JFrame("å®æ—¶æ•°æ®");
+        RealTimeChartTest rtcp = new RealTimeChartTest("éšæœºæ•°æ®", "æ ‡é¢˜", "yaxisName");
         frame.getContentPane().add(crtContentPnl(rtcp), new BorderLayout().CENTER);
         frame.pack();
         frame.setVisible(true);
@@ -92,7 +92,7 @@ public class RealTimeChartTest extends ChartPanel
     private static JFreeChart createChart(String chartContent, String title, String yaxisName)
     {
 
-        // ´´½¨Ê±ĞòÍ¼¶ÔÏó
+        // åˆ›å»ºæ—¶åºå›¾å¯¹è±¡
         xySeries = new XYSeries(0, false);
         XYSeriesCollection xySeriesCollection = new XYSeriesCollection(xySeries);
         /*
@@ -110,20 +110,20 @@ public class RealTimeChartTest extends ChartPanel
 
         XYPlot xyplot = jfreechart.getXYPlot();
 
-        // XÖáÉè¶¨
+        // Xè½´è®¾å®š
         ValueAxis valueaxis = xyplot.getDomainAxis();
-        // ×Ô¶¯ÉèÖÃÊı¾İÖáÊı¾İ·¶Î§
+        // è‡ªåŠ¨è®¾ç½®æ•°æ®è½´æ•°æ®èŒƒå›´
         valueaxis.setAutoRange(false);
 
-        // Êı¾İÖá¹Ì¶¨Êı¾İ·¶Î§ 30s
+        // æ•°æ®è½´å›ºå®šæ•°æ®èŒƒå›´ 30s
       //  valueaxis.setFixedAutoRange(300D);
 
         ValueAxis rangeAxis = xyplot.getRangeAxis();
         rangeAxis.setRange(150.0,152.0);
 
-        NumberAxis domainAxis = (NumberAxis)xyplot.getDomainAxis();//xÖáÉèÖÃ
+        NumberAxis domainAxis = (NumberAxis)xyplot.getDomainAxis();//xè½´è®¾ç½®
         domainAxis.setRange(1.0,200.0);
-        domainAxis.setTickUnit(new NumberTickUnit(20)); //Ã¿100¸ö¿Ì¶ÈÏÔÊ¾Ò»¸ö¿Ì¶ÈÖµ
+        domainAxis.setTickUnit(new NumberTickUnit(20)); //æ¯100ä¸ªåˆ»åº¦æ˜¾ç¤ºä¸€ä¸ªåˆ»åº¦å€¼
 
         // valueaxis.setRange(0.0D,200D);
         return jfreechart;

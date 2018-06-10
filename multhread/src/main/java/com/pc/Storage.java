@@ -6,25 +6,25 @@ import java.util.LinkedList;
 
 public class Storage
 {
-    // ²Ö¿â×î´ó´æ´¢Á¿
+    // ä»“åº“æœ€å¤§å­˜å‚¨é‡
     private final int MAX_SIZE = 100;
 
-    // ²Ö¿â´æ´¢µÄÔØÌå
+    // ä»“åº“å­˜å‚¨çš„è½½ä½“
     private LinkedList<Object> list = new LinkedList<Object>();
 
-    // Éú²únum¸ö²úÆ·
+    // ç”Ÿäº§numä¸ªäº§å“
     public void produce(int num)
     {
-        // Í¬²½´úÂë¶Î
+        // åŒæ­¥ä»£ç æ®µ
         synchronized (list)
         {
-            // Èç¹û²Ö¿âÊ£ÓàÈİÁ¿²»×ã
+            // å¦‚æœä»“åº“å‰©ä½™å®¹é‡ä¸è¶³
             while (list.size() + num > MAX_SIZE)
             {
-                System.out.println("¡¾ÒªÉú²úµÄ²úÆ·ÊıÁ¿¡¿:" + num + "/t¡¾¿â´æÁ¿¡¿:" + list.size() + "/tÔİÊ±²»ÄÜÖ´ĞĞÉú²úÈÎÎñ!");
+                System.out.println("ã€è¦ç”Ÿäº§çš„äº§å“æ•°é‡ã€‘:" + num + "/tã€åº“å­˜é‡ã€‘:" + list.size() + "/tæš‚æ—¶ä¸èƒ½æ‰§è¡Œç”Ÿäº§ä»»åŠ¡!");
                 try
                 {
-                    // ÓÉÓÚÌõ¼ş²»Âú×ã£¬Éú²ú×èÈû
+                    // ç”±äºæ¡ä»¶ä¸æ»¡è¶³ï¼Œç”Ÿäº§é˜»å¡
                     list.wait();
                 }
                 catch (InterruptedException e)
@@ -33,31 +33,31 @@ public class Storage
                 }
             }
 
-            // Éú²úÌõ¼şÂú×ãÇé¿öÏÂ£¬Éú²únum¸ö²úÆ·
+            // ç”Ÿäº§æ¡ä»¶æ»¡è¶³æƒ…å†µä¸‹ï¼Œç”Ÿäº§numä¸ªäº§å“
             for (int i = 1; i <= num; ++i)
             {
                 list.add(new Object());
             }
 
-            System.out.println("¡¾ÒÑ¾­Éú²ú²úÆ·Êı¡¿:" + num + "/t¡¾ÏÖ²Ö´¢Á¿Îª¡¿:" + list.size());
+            System.out.println("ã€å·²ç»ç”Ÿäº§äº§å“æ•°ã€‘:" + num + "/tã€ç°ä»“å‚¨é‡ä¸ºã€‘:" + list.size());
 
             list.notifyAll();
         }
     }
 
-    // Ïû·Ñnum¸ö²úÆ·
+    // æ¶ˆè´¹numä¸ªäº§å“
     public void consume(int num)
     {
-        // Í¬²½´úÂë¶Î
+        // åŒæ­¥ä»£ç æ®µ
         synchronized (list)
         {
-            // Èç¹û²Ö¿â´æ´¢Á¿²»×ã
+            // å¦‚æœä»“åº“å­˜å‚¨é‡ä¸è¶³
             while (list.size() < num)
             {
-                System.out.println("¡¾ÒªÏû·ÑµÄ²úÆ·ÊıÁ¿¡¿:" + num + "/t¡¾¿â´æÁ¿¡¿:" + list.size() + "/tÔİÊ±²»ÄÜÖ´ĞĞÉú²úÈÎÎñ!");
+                System.out.println("ã€è¦æ¶ˆè´¹çš„äº§å“æ•°é‡ã€‘:" + num + "/tã€åº“å­˜é‡ã€‘:" + list.size() + "/tæš‚æ—¶ä¸èƒ½æ‰§è¡Œç”Ÿäº§ä»»åŠ¡!");
                 try
                 {
-                    // ÓÉÓÚÌõ¼ş²»Âú×ã£¬Ïû·Ñ×èÈû
+                    // ç”±äºæ¡ä»¶ä¸æ»¡è¶³ï¼Œæ¶ˆè´¹é˜»å¡
                     list.wait();
                 }
                 catch (InterruptedException e)
@@ -66,19 +66,19 @@ public class Storage
                 }
             }
 
-            // Ïû·ÑÌõ¼şÂú×ãÇé¿öÏÂ£¬Ïû·Ñnum¸ö²úÆ·
+            // æ¶ˆè´¹æ¡ä»¶æ»¡è¶³æƒ…å†µä¸‹ï¼Œæ¶ˆè´¹numä¸ªäº§å“
             for (int i = 1; i <= num; ++i)
             {
                 list.remove();
             }
 
-            System.out.println("¡¾ÒÑ¾­Ïû·Ñ²úÆ·Êı¡¿:" + num + "/t¡¾ÏÖ²Ö´¢Á¿Îª¡¿:" + list.size());
+            System.out.println("ã€å·²ç»æ¶ˆè´¹äº§å“æ•°ã€‘:" + num + "/tã€ç°ä»“å‚¨é‡ä¸ºã€‘:" + list.size());
 
             list.notifyAll();
         }
     }
 
-    // get/set·½·¨
+    // get/setæ–¹æ³•
     public LinkedList<Object> getList()
     {
         return list;

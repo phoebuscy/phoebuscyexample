@@ -9,11 +9,11 @@ public class MainTest
 
         Storage storage = new Storage();
 
-        // Ïû·ÑÕß
+        // æ¶ˆè´¹è€…
         Cos c1 = new Cos(storage);
         c1.start();
 
-        // Éú²úÕß¶ÔÏó
+        // ç”Ÿäº§è€…å¯¹è±¡
         Prd p1 = new Prd(storage);
         p1.start();
 

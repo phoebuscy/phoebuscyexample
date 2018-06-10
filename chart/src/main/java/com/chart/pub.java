@@ -16,29 +16,29 @@ import static org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE
 public class pub
 {
 
-    // ÉèÖÃÖĞÎÄÖ÷ÌâÑùÊ½ ½â¾öÂÒÂë
+    // è®¾ç½®ä¸­æ–‡ä¸»é¢˜æ ·å¼ è§£å†³ä¹±ç 
     public static void setFreeChartTheme()
     {
-        Font FONT = new Font("ËÎÌå", Font.PLAIN, 12);
+        Font FONT = new Font("å®‹ä½“", Font.PLAIN, 12);
         StandardChartTheme chartTheme = new StandardChartTheme("CN");
-        // ÉèÖÃ±êÌâ×ÖÌå
+        // è®¾ç½®æ ‡é¢˜å­—ä½“
         chartTheme.setExtraLargeFont(FONT);
-        // ÉèÖÃÍ¼ÀıµÄ×ÖÌå
+        // è®¾ç½®å›¾ä¾‹çš„å­—ä½“
         chartTheme.setRegularFont(FONT);
-        // ÉèÖÃÖáÏòµÄ×ÖÌå
+        // è®¾ç½®è½´å‘çš„å­—ä½“
         chartTheme.setLargeFont(FONT);
         chartTheme.setSmallFont(FONT);
-        chartTheme.setTitlePaint(new Color(51, 51, 51));//Paint ¿ÉÒÔÀí½âÎª»æÖÆÑÕÉ«£»±êÌâ×ÖÌåÑÕÉ«
-        chartTheme.setSubtitlePaint(new Color(85, 85, 85));//¸±±êÌâ×ÖÌåÑÕÉ«
+        chartTheme.setTitlePaint(new Color(51, 51, 51));//Paint å¯ä»¥ç†è§£ä¸ºç»˜åˆ¶é¢œè‰²ï¼›æ ‡é¢˜å­—ä½“é¢œè‰²
+        chartTheme.setSubtitlePaint(new Color(85, 85, 85));//å‰¯æ ‡é¢˜å­—ä½“é¢œè‰²
 
-        chartTheme.setLegendBackgroundPaint(Color.WHITE);// ÉèÖÃ±ê×¢±³¾°É«
-        chartTheme.setLegendItemPaint(Color.BLACK);//ÉèÖÃ×ÖÌåÑÕÉ«
-        chartTheme.setChartBackgroundPaint(Color.WHITE);//Í¼±í±³¾°É«
-        // »æÖÆÑÕÉ«»æÖÆÑÕÉ«.ÂÖÀª¹©Ó¦ÉÌ
+        chartTheme.setLegendBackgroundPaint(Color.WHITE);// è®¾ç½®æ ‡æ³¨èƒŒæ™¯è‰²
+        chartTheme.setLegendItemPaint(Color.BLACK);//è®¾ç½®å­—ä½“é¢œè‰²
+        chartTheme.setChartBackgroundPaint(Color.WHITE);//å›¾è¡¨èƒŒæ™¯è‰²
+        // ç»˜åˆ¶é¢œè‰²ç»˜åˆ¶é¢œè‰².è½®å»“ä¾›åº”å•†
         // paintSequence,outlinePaintSequence,strokeSequence,outlineStrokeSequence,shapeSequence
 
-        Paint[] OUTLINE_PAINT_SEQUENCE = new Paint[]{Color.WHITE};//Íâ±ß¿òÏßÌõÑÕÉ«
-        //»æÖÆÆ÷ÑÕÉ«Ô´-ËùÓĞÏßÌõ ±ıÍ¼ Ä¬ÈÏÑÕÉ«¶¼ÊÇÀ´×ÔDefaultDrawingSupplier
+        Paint[] OUTLINE_PAINT_SEQUENCE = new Paint[]{Color.WHITE};//å¤–è¾¹æ¡†çº¿æ¡é¢œè‰²
+        //ç»˜åˆ¶å™¨é¢œè‰²æº-æ‰€æœ‰çº¿æ¡ é¥¼å›¾ é»˜è®¤é¢œè‰²éƒ½æ˜¯æ¥è‡ªDefaultDrawingSupplier
         DefaultDrawingSupplier drawingSupplier = new DefaultDrawingSupplier(DEFAULT_PAINT_SEQUENCE,
                                                                             DEFAULT_FILL_PAINT_SEQUENCE,
                                                                             OUTLINE_PAINT_SEQUENCE,
@@ -48,28 +48,28 @@ public class pub
                                                                                     .DEFAULT_OUTLINE_STROKE_SEQUENCE,
                                                                             DefaultDrawingSupplier
                                                                                     .DEFAULT_SHAPE_SEQUENCE);
-        chartTheme.setDrawingSupplier(drawingSupplier);//ÉèÖÃ»æÖÆÑÕÉ«¡¢ÏßÌõ¡¢Íâ±ß¿ò¹©Ó¦ÉÌ
+        chartTheme.setDrawingSupplier(drawingSupplier);//è®¾ç½®ç»˜åˆ¶é¢œè‰²ã€çº¿æ¡ã€å¤–è¾¹æ¡†ä¾›åº”å•†
 
-        chartTheme.setPlotBackgroundPaint(Color.WHITE);// »æÖÆÇøÓò±³¾°É«
-        chartTheme.setPlotOutlinePaint(Color.WHITE);// »æÖÆÇøÓòÍâ±ß¿ò
-        chartTheme.setLabelLinkPaint(new Color(8, 55, 114));// Á´½Ó±êÇ©ÑÕÉ«
+        chartTheme.setPlotBackgroundPaint(Color.WHITE);// ç»˜åˆ¶åŒºåŸŸèƒŒæ™¯è‰²
+        chartTheme.setPlotOutlinePaint(Color.WHITE);// ç»˜åˆ¶åŒºåŸŸå¤–è¾¹æ¡†
+        chartTheme.setLabelLinkPaint(new Color(8, 55, 114));// é“¾æ¥æ ‡ç­¾é¢œè‰²
         chartTheme.setLabelLinkStyle(PieLabelLinkStyle.CUBIC_CURVE);
 
-        chartTheme.setAxisOffset(new RectangleInsets(5, 12, 5, 12));//ÉèÖÃX-Y×ø±êÖáÆ«ÒÆÁ¿
-        chartTheme.setDomainGridlinePaint(new Color(192, 208, 224));// X×ø±êÖá´¹Ö±Íø¸ñÑÕÉ«
-        chartTheme.setRangeGridlinePaint(new Color(192, 192, 192));// Y×ø±êÖáË®Æ½Íø¸ñÑÕÉ«
+        chartTheme.setAxisOffset(new RectangleInsets(5, 12, 5, 12));//è®¾ç½®X-Yåæ ‡è½´åç§»é‡
+        chartTheme.setDomainGridlinePaint(new Color(192, 208, 224));// Xåæ ‡è½´å‚ç›´ç½‘æ ¼é¢œè‰²
+        chartTheme.setRangeGridlinePaint(new Color(192, 192, 192));// Yåæ ‡è½´æ°´å¹³ç½‘æ ¼é¢œè‰²
 
         chartTheme.setBaselinePaint(Color.WHITE);
-        chartTheme.setCrosshairPaint(Color.BLUE);// ²»È·¶¨º¬Òå
-        chartTheme.setAxisLabelPaint(new Color(51, 51, 51));// ×ø±êÖá±êÌâÎÄ×ÖÑÕÉ«
-        chartTheme.setTickLabelPaint(new Color(67, 67, 72));// ¿Ì¶ÈÊı×ÖÑÕÉ«
-        chartTheme.setBarPainter(new StandardBarPainter());// ÉèÖÃÖù×´Í¼äÖÈ¾ÎÊÅ¶»ù±¾äÖÈ¾£¬²»²ÉÓÃ½¥±ä
-        chartTheme.setXYBarPainter(new StandardXYBarPainter());// XYBar äÖÈ¾£¬ÖµÊ¹ÓÃÑÕÉ«äÖÈ¾£¬²»²ÉÓÃ½¥±ä
+        chartTheme.setCrosshairPaint(Color.BLUE);// ä¸ç¡®å®šå«ä¹‰
+        chartTheme.setAxisLabelPaint(new Color(51, 51, 51));// åæ ‡è½´æ ‡é¢˜æ–‡å­—é¢œè‰²
+        chartTheme.setTickLabelPaint(new Color(67, 67, 72));// åˆ»åº¦æ•°å­—é¢œè‰²
+        chartTheme.setBarPainter(new StandardBarPainter());// è®¾ç½®æŸ±çŠ¶å›¾æ¸²æŸ“é—®å“¦åŸºæœ¬æ¸²æŸ“ï¼Œä¸é‡‡ç”¨æ¸å˜
+        chartTheme.setXYBarPainter(new StandardXYBarPainter());// XYBar æ¸²æŸ“ï¼Œå€¼ä½¿ç”¨é¢œè‰²æ¸²æŸ“ï¼Œä¸é‡‡ç”¨æ¸å˜
 
         chartTheme.setItemLabelPaint(Color.black);
-        chartTheme.setThermometerPaint(Color.white);// ÎÂ¶È¼Æ
+        chartTheme.setThermometerPaint(Color.white);// æ¸©åº¦è®¡
 
-        ChartFactory.setChartTheme(chartTheme);//ÉèÖÃÖ÷ÌâÑùÊ½
+        ChartFactory.setChartTheme(chartTheme);//è®¾ç½®ä¸»é¢˜æ ·å¼
     }
 
 }
