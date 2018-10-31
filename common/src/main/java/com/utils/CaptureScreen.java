@@ -22,20 +22,20 @@ public class CaptureScreen {
         Rectangle screenRectangle = new Rectangle(screenSize);
         Robot robot = new Robot();
         BufferedImage image = robot.createScreenCapture(screenRectangle);
-        // ½ØÍ¼±£´æµÄÂ·¾¶
+        // æˆªå›¾ä¿å­˜çš„è·¯å¾„
         File screenFile = new File(fileName);
-        // Èç¹ûÂ·¾¶²»´æÔÚ,Ôò´´½¨
+        // å¦‚æœè·¯å¾„ä¸å­˜åœ¨,åˆ™åˆ›å»º
         if (!screenFile.getParentFile().exists()) {
             screenFile.getParentFile().mkdirs();
         }
-        //ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬²»´æÔÚ¾Í´´½¨ÎÄ¼ş
+        //åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨å°±åˆ›å»ºæ–‡ä»¶
         if(!screenFile.exists()&& !screenFile .isDirectory()) {
             screenFile.mkdir();
         }
 
         File f = new File(screenFile, folder);
         ImageIO.write(image, "png", f);
-        //×Ô¶¯´ò¿ª
+        //è‡ªåŠ¨æ‰“å¼€
         /*if (Desktop.isDesktopSupported()
                  && Desktop.getDesktop().isSupported(Desktop.Action.OPEN))
                     Desktop.getDesktop().open(f);*/
@@ -47,11 +47,11 @@ public class CaptureScreen {
 
         ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
 
-        TimerTask timerTask = new TimerTask(2000); // ÈÎÎñĞèÒª 2000 ms ²ÅÄÜÖ´ĞĞÍê±Ï
+        TimerTask timerTask = new TimerTask(2000); // ä»»åŠ¡éœ€è¦ 2000 ms æ‰èƒ½æ‰§è¡Œå®Œæ¯•
 
-        System.out.printf("ÆğÊ¼Ê±¼ä£º%s\n\n", new SimpleDateFormat("HH:mm:ss").format(new Date()));
+        System.out.printf("èµ·å§‹æ—¶é—´ï¼š%s\n\n", new SimpleDateFormat("HH:mm:ss").format(new Date()));
 
-        // ÑÓÊ± 1 Ãëºó£¬°´ 5 ÃëµÄÖÜÆÚÖ´ĞĞÈÎÎñ
+        // å»¶æ—¶ 1 ç§’åï¼ŒæŒ‰ 5 ç§’çš„å‘¨æœŸæ‰§è¡Œä»»åŠ¡
         timer.scheduleAtFixedRate(timerTask, 0, 20, TimeUnit.MINUTES);
 
     }
